@@ -5,11 +5,16 @@ let joke = "";
 
 
 const getDadJokes = async() =>{
-    const config = { headers: { Accept: 'application/json' }};
-    const res = await axios.get('https://icanhazdadjoke.com/', config)
-    joke = res.data.joke;
-    console.log(joke)
-    jokeHOne.innerText = joke;
+    try{
+        const config = { headers: { Accept: 'application/json' }};
+        const res = await axios.get('https://icanhazdadjoke.com/', config)
+        joke = res.data.joke;
+        console.log(joke)
+        jokeHOne.innerText = joke;
+    }
+    catch(err){
+        jokeHOne.innerText = "No Jokes Available Sorry!! :(";
+    }
 }
 
 btn.addEventListener('click', getDadJokes)
